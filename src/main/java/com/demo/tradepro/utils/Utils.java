@@ -33,8 +33,8 @@ public class Utils {
     	int scale = Integer.parseInt(dividsor);
     	
     	amount = amount.multiply(new BigDecimal(dividsor));
-		amount = amount.setScale(1, RoundingMode.UP);
-		amount = amount.divide(new BigDecimal(dividsor), scale, RoundingMode.UP);
-		return amount;
+	amount = amount.setScale(1, RoundingMode.UP);
+	amount = amount.divide(new BigDecimal(dividsor), scale, RoundingMode.UP);
+	return amount;
     }
 }
