@@ -1,0 +1,11 @@
+app:
+  salestax:
+    - location: "CA"
+      exempt: food
+      rate: 0.0975
+    - location: "NY"
+      exempt: food,clothing
+      rate: 0.0875
+  exemptcat:
+    "food": potato chips
+    "clothing": shirt
