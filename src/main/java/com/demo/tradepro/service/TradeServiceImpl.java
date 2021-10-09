@@ -1,7 +1,6 @@
 package com.demo.tradepro.service;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,29 +48,11 @@ public class TradeServiceImpl implements TradeService{
 				+Utils.leftPad("price", Utils.PAD_LEN)
 				+Utils.leftPad("qty", Utils.PAD_LEN)+Utils.LBREAK+"\r";		
 	}
-	
-	/*
-	private double getTaxRateX(String location, String productName) {
-		double taxRate = 0;
-		String city = location.toUpperCase();
 		
-		switch (city) {
-		case "CA":
-			taxRate = productName.equalsIgnoreCase("potato chips") ? 0.0 : 9.75/100;
-			break;
-		case "NY":
-			taxRate = (productName.equalsIgnoreCase("shirt") || productName.equalsIgnoreCase("potato chips")) ? 0.0 : 8.875/100;
-			break;
-		default:
-			taxRate = 0.0;
-		}
-				
-		return taxRate;
-	}
-	*/
 	private double getTaxRate(String location, String productName) {
 		double taxRate = 0;
 		
+		//find product category
 		Optional<Map.Entry<String, String>> first = appConfig.getExemptcat()
 		            .entrySet()
 		            .stream()
@@ -80,6 +61,7 @@ public class TradeServiceImpl implements TradeService{
 	            
 		String productCat = first.isPresent() ? first.get().getKey() : "other";
 		
+		//find tax rate
 		Optional<Double> rate = appConfig.getSalestax()
 				.stream()
 				.filter(p -> p.getLocation().equalsIgnoreCase(location) && !p.getExempt().contains(productCat))
@@ -140,16 +122,5 @@ public class TradeServiceImpl implements TradeService{
 		
 	}
 	
-    public static BigDecimal roundUp(BigDecimal amount, double nearestNum)
-    {
-    	Double val = 10/(nearestNum*100);
-    	int nearest = val.intValue();
-    	String dividsor = String.valueOf(nearest);
-    	int scale = Integer.parseInt(dividsor);
-    	
-	amount = amount.multiply(new BigDecimal(dividsor));
-	amount = amount.setScale(1, RoundingMode.UP);
-	amount = amount.divide(new BigDecimal(dividsor), scale, RoundingMode.UP);
-	return amount;
-    }
 }
+
