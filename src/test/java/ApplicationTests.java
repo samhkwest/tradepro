@@ -51,7 +51,7 @@ public class ApplicationTests  {
     	Map<Integer, String> result = new HashMap<Integer, String>();
     	
     	String receipt = 
-    			"item                               price                 qty" + Utils.LBREAK +"\r"+
+    		    "item                               price                 qty" + Utils.LBREAK +"\r"+
     		    "book                              $17.99                   1" + Utils.LBREAK +
     		    "potato chips                       $3.99                   1" + Utils.LBREAK +
     		    "subtotal:                                             $21.98" + Utils.LBREAK +
@@ -59,7 +59,7 @@ public class ApplicationTests  {
     		    "total:                                                $23.78";
     	result.put(1, receipt);
     	receipt = 
-    			"item                               price                 qty" + Utils.LBREAK +"\r"+
+    		    "item                               price                 qty" + Utils.LBREAK +"\r"+
     		    "book                              $17.99                   1" + Utils.LBREAK +
     		    "pencil                             $2.99                   3" + Utils.LBREAK +
     		    "subtotal:                                             $26.96" + Utils.LBREAK +
@@ -67,7 +67,7 @@ public class ApplicationTests  {
     		    "total:                                                $29.36";
     	result.put(2, receipt);
     	receipt = 
-    			"item                               price                 qty" + Utils.LBREAK +"\r"+
+    		    "item                               price                 qty" + Utils.LBREAK +"\r"+
     		    "pencil                             $2.99                   2" + Utils.LBREAK +
     		    "shirt                             $29.99                   1" + Utils.LBREAK +
     		    "subtotal:                                             $35.97" + Utils.LBREAK +
@@ -116,7 +116,6 @@ public class ApplicationTests  {
     	HttpEntity<Trade> request = new HttpEntity<>(trade, new HttpHeaders());
     	    	
         ResponseEntity<String> resp = this.restTemplate.postForEntity(uri, request, String.class);
-    	
     	
     	String actual = resp.getBody();    	
     	String expected = expectedResult.get(index);
