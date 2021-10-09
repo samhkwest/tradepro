@@ -3,9 +3,13 @@ package com.demo.tradepro.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.tradepro.configuration.AppConfig;
 import com.demo.tradepro.model.PurchasedItem;
 import com.demo.tradepro.model.Trade;
 import com.demo.tradepro.utils.Utils;
@@ -13,7 +17,26 @@ import com.demo.tradepro.utils.Utils;
 @Service
 public class TradeServiceImpl implements TradeService{
 	
-	public String getReceipt(Trade trade) {
+	@Autowired
+	AppConfig appConfig;
+	/*
+	private void checkData() {
+		System.out.println("appConfig: "+Arrays.toString(appConfig.getSalestax().toArray()));
+		
+		appConfig.getExemptcat().forEach((key, value) -> System.out.println(key + ":" + value));
+				
+		getTaxRate("CA", "book");
+		getTaxRate("CA", "potato chips");		
+		getTaxRate("NY", "book");
+		getTaxRate("NY", "potato chips");
+		getTaxRate("NY", "pencil");		
+		getTaxRate("NY", "shirt");
+		
+	}*/
+	
+	public String getReceipt(Trade trade) {	
+		//checkData();
+		
 		String location = trade.getLocation();
 		List<PurchasedItem> purchasedItem = trade.getPurchasedItem();
 		
@@ -27,7 +50,8 @@ public class TradeServiceImpl implements TradeService{
 				+Utils.leftPad("qty", Utils.PAD_LEN)+Utils.LBREAK+"\r";		
 	}
 	
-	private double getTaxRate(String location, String productName) {
+	/*
+	private double getTaxRateX(String location, String productName) {
 		double taxRate = 0;
 		String city = location.toUpperCase();
 		
@@ -44,6 +68,28 @@ public class TradeServiceImpl implements TradeService{
 				
 		return taxRate;
 	}
+	*/
+	private double getTaxRate(String location, String productName) {
+		double taxRate = 0;
+		
+		Optional<Map.Entry<String, String>> first = appConfig.getExemptcat()
+		            .entrySet()
+		            .stream()
+		            .filter(entry -> entry.getValue().contains(productName))
+		            .findFirst();
+	            
+		String productCat = first.isPresent() ? first.get().getKey() : "other";
+		
+		Optional<Double> rate = appConfig.getSalestax()
+				.stream()
+				.filter(p -> p.getLocation().equalsIgnoreCase(location) && !p.getExempt().contains(productCat))
+				.findFirst()
+				.map(p -> p.getRate());
+		
+		taxRate = rate.isPresent() ? rate.get() : 0;		
+		
+		return taxRate;
+	}
 	
 	private String getDerivedRow(String label, String valStr) {
 		return Utils.rightPad(label+":", Utils.HALF_LEN) + Utils.leftPad("$" + valStr, Utils.HALF_LEN);
@@ -56,7 +102,6 @@ public class TradeServiceImpl implements TradeService{
 		StringBuilder itemList = new StringBuilder("");
 		StringBuilder receipt = new StringBuilder("");
 		
-		System.out.println("location: "+location);
 		for (PurchasedItem item : purchasedItem) {	
 			amount = new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getQty()));
 			subTotalAmt = subTotalAmt.add(amount);
@@ -102,9 +147,9 @@ public class TradeServiceImpl implements TradeService{
     	String dividsor = String.valueOf(nearest);
     	int scale = Integer.parseInt(dividsor);
     	
-    	amount = amount.multiply(new BigDecimal(dividsor));
-    	amount = amount.setScale(1, RoundingMode.UP);
-    	amount = amount.divide(new BigDecimal(dividsor), scale, RoundingMode.UP);
-    	return amount;
+	amount = amount.multiply(new BigDecimal(dividsor));
+	amount = amount.setScale(1, RoundingMode.UP);
+	amount = amount.divide(new BigDecimal(dividsor), scale, RoundingMode.UP);
+	return amount;
     }
 }
