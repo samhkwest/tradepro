@@ -62,7 +62,7 @@ public class TradeServiceImpl implements TradeService{
 	            
 		String productCat = first.isPresent() ? first.get().getKey() : "other";
 		
-		//find tax rate
+		//find tax rate by location and product cat.
 		Optional<Double> rate = appConfig.getSalestax()
 				.stream()
 				.filter(p -> p.getLocation().equalsIgnoreCase(location) && !p.getExempt().contains(productCat))
