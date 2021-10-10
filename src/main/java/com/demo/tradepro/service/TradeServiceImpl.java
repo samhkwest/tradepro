@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.tradepro.configuration.AppConfig;
+import com.demo.tradepro.configuration.TestConfig;
 import com.demo.tradepro.model.PurchasedItem;
 import com.demo.tradepro.model.Trade;
 import com.demo.tradepro.utils.Utils;
@@ -18,19 +19,21 @@ public class TradeServiceImpl implements TradeService{
 	
 	@Autowired
 	AppConfig appConfig;
+	
+	@Autowired
+	List<TestConfig> testConfig;
 	/*
 	private void checkData() {
 		System.out.println("appConfig: "+Arrays.toString(appConfig.getSalestax().toArray()));
 		
-		appConfig.getExemptcat().forEach((key, value) -> System.out.println(key + ":" + value));
+		appConfig.getProductcat().forEach((key, value) -> System.out.println(key + ":" + value));
 				
 		getTaxRate("CA", "book");
 		getTaxRate("CA", "potato chips");		
 		getTaxRate("NY", "book");
 		getTaxRate("NY", "potato chips");
 		getTaxRate("NY", "pencil");		
-		getTaxRate("NY", "shirt");
-		
+		getTaxRate("NY", "shirt");		
 	}*/
 	
 	public String getReceipt(Trade trade) {	
@@ -53,7 +56,7 @@ public class TradeServiceImpl implements TradeService{
 		double taxRate = 0;
 		
 		//find product category
-		Optional<Map.Entry<String, String>> first = appConfig.getExemptcat()
+		Optional<Map.Entry<String, String>> first = appConfig.getProductcat()
 		            .entrySet()
 		            .stream()
 		            .filter(entry -> entry.getValue().contains(productName))
@@ -123,4 +126,3 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 }
-
