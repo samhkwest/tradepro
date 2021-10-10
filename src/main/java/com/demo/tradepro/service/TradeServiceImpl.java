@@ -20,8 +20,6 @@ public class TradeServiceImpl implements TradeService{
 	@Autowired
 	AppConfig appConfig;
 	
-	@Autowired
-	List<TestConfig> testConfig;
 	/*
 	private void checkData() {
 		System.out.println("appConfig: "+Arrays.toString(appConfig.getSalestax().toArray()));
