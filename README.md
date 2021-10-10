@@ -2,7 +2,7 @@
 
 1. This is a app of RESTful API backend services to product sales receipt for a list of purchased products.
 
-2. For a http request message as below\n:
+2. For a http request message as below:
       {
         "location":"CA",
         "purchasedItem":[
