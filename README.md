@@ -2,7 +2,7 @@
 
 1. This is a app of RESTful API backend services to product sales receipt for a list of purchased products.
 
-2. The service endpoint is http://localhost:8080/tradepro/receipt
+2. The service endpoint is http://[Domain]/tradepro/receipt
 
 3. It accepts request message in format:
 
