@@ -77,7 +77,7 @@
       
       In New York (NY), sales tax rate is 8.875%, food and clothing are exempted.
 
-8. The product categories and the exemption list of tax rates are stored in a application properties file in yaml format:
+8. The product categories and the exemption list of tax rates are stored in a configurable application properties file, in yaml format:
 ```json            
       app:
         salestax:
