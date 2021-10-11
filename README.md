@@ -69,7 +69,7 @@
 
       Sales tax = roundup(price * quantity * sales tax rate).
       
-6. Certain product categories are exempt from sales tax (means tax will be 0), and sales tax amount should be rounded up to the nearest 0.05 (e.g. 1.13->1.15, 1.16->1.20, 1.151->1.20)
+6. Certain product categories are exempted from sales tax (i.e, tax rate is 0), and sales tax amount must be rounded up to a nearest decimal number 0.05 (e.g. 1.13->1.15, 1.16->1.20, 1.151->1.20)
 
 7. Soome products are exempted from tax rate:
 
