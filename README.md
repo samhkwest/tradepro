@@ -71,7 +71,7 @@
       
 6. Certain product categories are exempted from sales tax (i.e, tax rate is 0), and sales tax amount must be rounded up to a nearest decimal number 0.05 (e.g. 1.13->1.15, 1.16->1.20, 1.151->1.20)
 
-7. Soome products are exempted from tax rate:
+7. The following product categories are exempted from tax rate:
 
       In California (CA), sales tax rate is 9.75%, food is exempted.
       
