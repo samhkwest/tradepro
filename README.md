@@ -86,7 +86,7 @@
             rate: 0.0975
           - location: "NY"
             exempt: food,clothing
-            rate: 0.0875
+            rate: 0.08875
         productcat:
           "food": potato chips
           "clothing": shirt
