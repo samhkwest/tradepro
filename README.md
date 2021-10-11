@@ -1,6 +1,6 @@
 # tradepro
 
-1. This is a app of RESTful API backend services to product sales receipt for a list of purchased products.
+1. This is a app of RESTful API backend services to generate sales receipt for purchased products.
 
 2. The service endpoint is http://[Domain]/tradepro/receipt
 
