@@ -1,6 +1,6 @@
 # tradepro
 
-1. This is a app of RESTful API backend services to generate sales receipt for purchased products.
+1. This is a app of RESTful API backend services (Spring Boot framework) to generate sales receipt for purchased products.
 
 2. The service endpoint is http://[Domain]/tradepro/receipt
 
