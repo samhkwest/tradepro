@@ -32,3 +32,9 @@
       tax:                                                   $1.80
       total:                                                $23.78
       ```
+      
+5. The sales tax rates are defined as:
+
+      In California (CA), sales tax rate is 9.75%, food is exempted.
+      
+      In New York (NY), sales tax rate is 8.875%, food and clothing are exempted.
