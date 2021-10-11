@@ -6,7 +6,7 @@
 
 3. It accepts request messages in format:
       
-      ## Sample 1
+   ## Sample 1
       
       Method: POST
       
