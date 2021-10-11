@@ -21,7 +21,6 @@ public class TradeController {
       
   @PostMapping(path="/tradepro/receipt", produces = MediaType.TEXT_PLAIN_VALUE)
   public ResponseEntity<Object> createReceipt(@RequestBody Trade trade){
-	  //stem.out.println("trade: "+trade.toString());	  
 	  String receipt = tradeService.getReceipt(trade);	  
 	  return new ResponseEntity<Object>(receipt, HttpStatus.OK);
   }
