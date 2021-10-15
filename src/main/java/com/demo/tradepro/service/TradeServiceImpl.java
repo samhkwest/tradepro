@@ -45,14 +45,10 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private String getHeader() {
-		return Utils.rightPad("item")
-				+Utils.leftPad("price")
-				+Utils.leftPad("qty")+Utils.LBREAK+"\r";		
+		return Utils.rightPad("item") + Utils.leftPad("price") + Utils.leftPad("qty")+Utils.LBREAK+"\r";		
 	}
 		
-	private double getTaxRate(String location, String productName) {
-		double taxRate = 0;
-		
+	private double getTaxRate(String location, String productName) {	
 		//find product category
 		Optional<Map.Entry<String, String>> first = appConfig.getProductcat()
 		            .entrySet()
@@ -69,9 +65,7 @@ public class TradeServiceImpl implements TradeService{
 				.findFirst()
 				.map(p -> p.getRate());
 		
-		taxRate = rate.isPresent() ? rate.get() : 0;		
-		
-		return taxRate;
+		return rate.isPresent() ? rate.get() : 0;
 	}
 	
 	private String getDerivedRow(String label, String valStr) {
@@ -119,8 +113,6 @@ public class TradeServiceImpl implements TradeService{
 				.append(totalTaxAmtRow).append(Utils.LBREAK)
 				.append(totalAmtRow);
 		
-		return receipt.toString();
-		
-	}
-	
+		return receipt.toString();		
+	}	
 }
