@@ -45,7 +45,7 @@ public class TradeServiceImpl implements TradeService{
 	}
 	
 	private String getHeader() {
-		return Utils.rightPad("item") + Utils.leftPad("price") + Utils.leftPad("qty")+Utils.LBREAK+"\r";		
+		return Utils.rightPad("item") + Utils.leftPad("price") + Utils.leftPad("qty") + Utils.LBREAK + "\r";		
 	}
 		
 	private double getTaxRate(String location, String productName) {	
