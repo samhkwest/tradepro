@@ -73,9 +73,9 @@
 
 7. The following product categories are exempted from tax rate:
 
-      In California (CA), sales tax rate is 9.75%, food is exempted.
+      For California (CA), sales tax rate is 9.75%, food products are exempted.
       
-      In New York (NY), sales tax rate is 8.875%, food and clothing are exempted.
+      For New York (NY), sales tax rate is 8.875%, food and apparel products are exempted.
 
 8. The product categories and the exemption list of tax rates are stored in a configurable application properties file, in yaml format:
 ```json            
